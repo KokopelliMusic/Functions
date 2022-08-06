@@ -1,0 +1,35 @@
+{
+    "projectId": "kokopelli-dev",
+    "projectName": "Kokopelli Development",
+    "functions": [
+        {
+            "$id": "getContributorsFromPlaylist",
+            "name": "Get all contributors from playlist",
+            "runtime": "python-3.9",
+            "path": "functions/Get all contributors from playlist",
+            "entrypoint": "src/index.py",
+            "ignore": [
+                "__pypackages__"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        },
+        {
+            "$id": "newTempSession",
+            "name": "newTempSession",
+            "runtime": "node-16.0",
+            "path": "functions/newTempSession",
+            "entrypoint": "src/index.js",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
+        }
+    ]
+}
