@@ -27,6 +27,18 @@
             "events": [],
             "schedule": "",
             "timeout": 15
+        },
+        {
+            "$id": "removeUnusedTempSessions",
+            "name": "Remove unused temp sessions",
+            "runtime": "deno-1.21",
+            "path": "functions/Remove unused temp sessions",
+            "entrypoint": "src/mod.ts",
+            "ignore": [],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
