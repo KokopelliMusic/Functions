@@ -5,7 +5,7 @@
         {
             "$id": "getContributorsFromPlaylist",
             "name": "Get all contributors from playlist",
-            "runtime": "python-3.9",
+            "runtime": "python-3.10",
             "path": "functions/Get all contributors from playlist",
             "entrypoint": "src/index.py",
             "ignore": [
@@ -17,15 +17,12 @@
             "timeout": 15
         },
         {
-            "$id": "newTempSession",
-            "name": "newTempSession",
-            "runtime": "node-16.0",
-            "path": "functions/newTempSession",
-            "entrypoint": "src/index.js",
-            "ignore": [
-                "node_modules",
-                ".npm"
-            ],
+            "$id": "genNewTempSession",
+            "name": "Generate new temporary session",
+            "runtime": "deno-1.21",
+            "path": "functions/Generate new temporary session",
+            "entrypoint": "src/mod.ts",
+            "ignore": [],
             "execute": [],
             "events": [],
             "schedule": "",
