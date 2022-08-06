@@ -39,6 +39,18 @@
             "events": [],
             "schedule": "",
             "timeout": 15
+        },
+        {
+            "$id": "claimSession",
+            "name": "Claim session",
+            "runtime": "deno-1.21",
+            "path": "functions/Claim session",
+            "entrypoint": "src/mod.ts",
+            "ignore": [],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
