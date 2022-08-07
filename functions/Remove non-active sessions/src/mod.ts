@@ -29,15 +29,14 @@ export default function (req: any, _res: any) {
       .setKey(req.env['APPWRITE_FUNCTION_API_KEY'] as string);
   }
 
-  database.listDocuments('temp_session')
-    .then(temps => {
-      temps.documents.forEach(temp => {
-        const dateCreated = temp.$createdAt * 1000
+  database.listDocuments('session')
+    .then(sessions => {
+      sessions.documents.forEach(session => {
+        const dateCreated = session.$updatedAt * 1000
 
-        // This session has been created more than 1 hour ago, delete it!
-        // if (((new Date().getTime()) - dateCreated) < 60 * 60 * 1000) {
-        if (dateCreated < (new Date().getTime() + (60 * 60 * 1000))) {
-          database.deleteDocument('temp_session', temp.$id)
+        // This session had its last activity 12 hours ago, delete it!
+        if (dateCreated < (new Date().getTime() + (12 * 60 * 60 * 1000))) {
+          database.deleteDocument('session', session.$id)
         }
       })
     })

@@ -51,6 +51,18 @@
             "events": [],
             "schedule": "",
             "timeout": 15
+        },
+        {
+            "$id": "removeNonActiveSessions",
+            "name": "Remove non-active sessions",
+            "runtime": "deno-1.21",
+            "path": "functions/Remove non-active sessions",
+            "entrypoint": "src/mod.ts",
+            "ignore": [],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
