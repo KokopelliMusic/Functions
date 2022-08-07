@@ -35,7 +35,7 @@ export default function (req: any, _res: any) {
         const dateCreated = session.$updatedAt * 1000
 
         // This session had its last activity 12 hours ago, delete it!
-        if (dateCreated < (new Date().getTime() + (12 * 60 * 60 * 1000))) {
+        if ((dateCreated  + (12 * 60 * 60 * 1000)) < new Date().getTime()) {
           database.deleteDocument('session', session.$id)
         }
       })

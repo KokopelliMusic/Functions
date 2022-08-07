@@ -36,7 +36,7 @@ export default function (req: any, _res: any) {
 
         // This session has been created more than 1 hour ago, delete it!
         // if (((new Date().getTime()) - dateCreated) < 60 * 60 * 1000) {
-        if (dateCreated < (new Date().getTime() + (60 * 60 * 1000))) {
+        if ((dateCreated + (60 * 60 * 1000) < new Date().getTime())) {
           database.deleteDocument('temp_session', temp.$id)
         }
       })
