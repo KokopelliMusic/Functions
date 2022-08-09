@@ -63,6 +63,18 @@
             "events": [],
             "schedule": "",
             "timeout": 15
+        },
+        {
+            "$id": "joinSession",
+            "name": "Join a session",
+            "runtime": "deno-1.21",
+            "path": "functions/Join a session",
+            "entrypoint": "src/mod.ts",
+            "ignore": [],
+            "execute": [],
+            "events": [],
+            "schedule": "",
+            "timeout": 15
         }
     ]
 }
