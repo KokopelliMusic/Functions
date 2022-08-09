@@ -20,6 +20,8 @@ export default async function (req: any, res: any) {
 
   // You can remove services you don't use
   const database = new sdk.Databases(client, 'main');
+  const teams = new sdk.Teams(client);
+  const users = new sdk.Users(client);
 
   if (!req.env['APPWRITE_FUNCTION_ENDPOINT'] || !req.env['APPWRITE_FUNCTION_API_KEY']) {
     console.warn("Environment variables are not set. Function cannot use Appwrite SDK.");
@@ -65,14 +67,27 @@ export default async function (req: any, res: any) {
       })
     }
 
+    const user = await users.get(payload.user_id);
+
     // since there can only be one session with that id, select the first one
     const session_id = session.documents[0].$id
+
+    // Create a new team for this session
+    await teams.create(session_id, session_id)
+
+    // and add this user to it.
+    await teams.createMembership(session_id, user.email, [], req.env['APPWRITE_FUNCTION_ENDPOINT'])
   
+    // Create the session in the database, giving r/w permission to everyone in the team.
     await database.createDocument('session', session_id, {
       settings: JSON.stringify(sipapu.DEFAULT_SETTINGS),
       playlist_id: payload.playlist_id,
-      user_id: payload.user_id
-    })
+      user_id: payload.user_id,
+      users: [payload.user_id]
+    }, 
+      [`team:${session_id}`], 
+      [`team:${session_id}`]
+    )
 
     await database.deleteDocument('temp_session', session_id)
 
