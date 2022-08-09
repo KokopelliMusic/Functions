@@ -19,6 +19,7 @@ export default function (req: any, _res: any) {
 
   // You can remove services you don't use
   const database = new sdk.Databases(client, 'main');
+  const teams = new sdk.Teams(client);
 
   if (!req.env['APPWRITE_FUNCTION_ENDPOINT'] || !req.env['APPWRITE_FUNCTION_API_KEY']) {
     console.warn("Environment variables are not set. Function cannot use Appwrite SDK.");
@@ -37,6 +38,7 @@ export default function (req: any, _res: any) {
         // This session had its last activity 12 hours ago, delete it!
         if ((dateCreated  + (12 * 60 * 60 * 1000)) < new Date().getTime()) {
           database.deleteDocument('session', session.$id)
+          teams.delete(session.$id)
         }
       })
     })
